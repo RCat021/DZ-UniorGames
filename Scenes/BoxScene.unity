@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 814381869}
   - component: {fileID: 814381868}
   - component: {fileID: 814381871}
+  - component: {fileID: 814381872}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -375,12 +376,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8039de1d3784fa4eb551c2b1715ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cube: {fileID: 1915145486243268296, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
-  _explosion: {fileID: 388666039116177620, guid: c74b95920d78a6c41a7de79dbd6b9402, type: 3}
-  _minSpawnCube: 2
-  _maxSpawnCube: 6
+  _spawner: {fileID: 814381872}
   _cubeSizeReduction: 2
   _cubeSplitChanceDecrease: 2
+--- !u!114 &814381872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814381867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a0ced8ca72bb744937c52a2bf730bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubeDestroy: {fileID: 7265703439478572165, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+  _explosion: {fileID: 4920623718312625244, guid: c74b95920d78a6c41a7de79dbd6b9402, type: 3}
+  _minSpawnCube: 2
+  _maxSpawnCube: 6
 --- !u!1 &1225561867
 GameObject:
   m_ObjectHideFlags: 0
