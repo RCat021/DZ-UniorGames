@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class InputRayCaster : MonoBehaviour
 {
+    [SerializeField] private Camera _camera;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Ray _ray;
     [SerializeField] protected float _maxDistance = 10f;
-    [SerializeField] protected float _radius = 0.1f;
-
-    private Camera _camera;
-
-    private void Awake()
-    {
-        _camera = GetComponent<Camera>();
-    }
 
     private void Update()
     {
@@ -31,24 +24,10 @@ public class InputRayCaster : MonoBehaviour
         if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
         {
             Transform objectHit = hit.transform;
-            CubeView cubeView = objectHit.GetComponent<CubeView>();
+            objectHit.TryGetComponent<CubeView>(out CubeView cubeView);
 
             if (cubeView != null)
-            {
-                SpawnCubes(cubeView);
-                DestroyCube(cubeView);
-            }
+                cubeView.OnButton();
         }
-    }
-
-    private void SpawnCubes(CubeView cubeView)
-    {
-        if (cubeView.IsTriggerEventSpawn(out Vector3 newCubeSize, out int newShanceDecreaseCube))
-            _spawner.CubeSpawn(cubeView.transform.position, newCubeSize, newShanceDecreaseCube);
-    }
-
-    private void DestroyCube(CubeView cubeView)
-    {
-        cubeView.Destroy();
     }
 }

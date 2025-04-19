@@ -185,6 +185,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131697042}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &152103816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+  m_PrefabInstance: {fileID: 1748177286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8039de1d3784fa4eb551c2b1715ac17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483699874
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,9 +626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7aef699c31653e4487b75fd9d2f20c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 963194227}
   _spawner: {fileID: 963194230}
   _maxDistance: 10
-  _radius: 0.1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a0ced8ca72bb744937c52a2bf730bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubeView: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+  _initialCube: {fileID: 152103816}
+  _prefabCube: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
   _exploader: {fileID: 963194231}
   _minSpawnCube: 2
   _maxSpawnCube: 6
@@ -647,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _force: 100
-  _radius: 10
+  _radius: 20
 --- !u!1 &1216618896
 GameObject:
   m_ObjectHideFlags: 0

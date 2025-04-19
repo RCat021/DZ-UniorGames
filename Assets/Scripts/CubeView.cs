@@ -1,55 +1,68 @@
+using System;
 using UnityEngine;
+
 
 [RequireComponent (typeof(Rigidbody))]
 public class CubeView : MonoBehaviour
 {
     [SerializeField] private int _cubeSizeReduction = 2;
-
     [SerializeField] private int _cubeSplitChanceDecrease = 2;
 
     private int _maxChanceDecrease = 100;
     private int _chanceDecrease;
+
+    public event Action<CubeView> Split;
+    public event Action<CubeView> Destroyed;
 
     private void Awake()
     {
         _chanceDecrease = _maxChanceDecrease;
     }
 
-    private Vector3 GetSizeNewCube()
+    public void RedefineChanceDecrease(int chanceDecrease)
+    {
+        _chanceDecrease = chanceDecrease;
+    }
+
+    public void OnButton()
+    {
+        IsTriggerEventSpawn();
+        Destroy();
+    }
+
+    public int GetNewChanceDecrease()
+    {
+        return _chanceDecrease / _cubeSplitChanceDecrease;
+    }
+
+    public Vector3 GetSizeNewCube()
     {
         return transform.localScale / _cubeSizeReduction;
     }
 
     private bool IsTriggerEvent()
     {
-        int percent = Random.Range(0, _maxChanceDecrease + 1);
-        bool isTriggerEvent = false;
+        int percent = UnityEngine.Random.Range(0, _maxChanceDecrease + 1);
 
-        if (_chanceDecrease >= percent)
-            isTriggerEvent = true;
-
-        return isTriggerEvent;
+        return _chanceDecrease >= percent;
     }
 
-    public bool IsTriggerEventSpawn(out Vector3 newCubeSize, out int newShanceDecrease)
+    private bool IsTriggerEventSpawn()
     {
         bool isTrigger = false;
-        newCubeSize = GetSizeNewCube();
-        newShanceDecrease = _chanceDecrease / _cubeSplitChanceDecrease;
 
         if (IsTriggerEvent())
+        {
+            Split?.Invoke(this);
             isTrigger = true;
+        }
 
         return isTrigger;
     }
 
-    public void Destroy()
+    private void Destroy()
     {
+        Destroyed?.Invoke(this);
         Destroy(gameObject);
-    }
-
-    public void RedefinitionShanceDerease(int chanceDecrease)
-    {
-        _chanceDecrease = chanceDecrease;
     }
 }

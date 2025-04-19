@@ -12,6 +12,6 @@ public class Exploader : MonoBehaviour
         Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
 
         if (rigidbody != null)
-            rigidbody.AddExplosionForce(_force, transform.position, _radius);
+            rigidbody.AddExplosionForce(_force, gameObject.transform.position, _radius);
     }
 }
