@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -611,12 +612,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8039de1d3784fa4eb551c2b1715ac17, type: 3}
+  m_Script: {fileID: 11500000, guid: a7aef699c31653e4487b75fd9d2f20c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 963194230}
-  _cubeSizeReduction: 2
-  _cubeSplitChanceDecrease: 2
+  _maxDistance: 10
+  _radius: 0.1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,11 +630,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a0ced8ca72bb744937c52a2bf730bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubeDestroy: {fileID: 7265703439478572165, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+  _cubeView: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+  _exploader: {fileID: 963194231}
   _minSpawnCube: 2
   _maxSpawnCube: 6
-  _spawnForceCube: 100
-  _spawnRadiusCube: 10
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c225a7f16647e9b458cc7678471c5f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _force: 100
+  _radius: 10
 --- !u!1 &1216618896
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,10 +750,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7265703439478572165, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
-      propertyPath: _cubeView
-      value: 
-      objectReference: {fileID: 963194229}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

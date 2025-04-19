@@ -1,9 +1,8 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Rigidbody))]
 public class CubeView : MonoBehaviour
 {
-    [SerializeField] private Spawner _spawner;
-
     [SerializeField] private int _cubeSizeReduction = 2;
 
     [SerializeField] private int _cubeSplitChanceDecrease = 2;
@@ -11,31 +10,14 @@ public class CubeView : MonoBehaviour
     private int _maxChanceDecrease = 100;
     private int _chanceDecrease;
 
-    public static CubeView Instance;
-
-    void Awake()
-    {
-        Instance = this;
-    }
-
-    private void Start()
+    private void Awake()
     {
         _chanceDecrease = _maxChanceDecrease;
     }
 
-    public void HandleCubeDestruction(Transform transform)
+    private Vector3 GetSizeNewCube()
     {
-        if (IsTriggerEvent())
-        {
-            Vector3 size = GetSizeNewCube(transform.localScale);
-
-            _spawner.CubeSpawn(transform.position, size);
-        }
-    }
-
-    private Vector3 GetSizeNewCube(Vector3 size)
-    {
-        return size / _cubeSizeReduction;
+        return transform.localScale / _cubeSizeReduction;
     }
 
     private bool IsTriggerEvent()
@@ -44,11 +26,30 @@ public class CubeView : MonoBehaviour
         bool isTriggerEvent = false;
 
         if (_chanceDecrease >= percent)
-        {
-            _chanceDecrease /= _cubeSplitChanceDecrease;
             isTriggerEvent = true;
-        }
 
         return isTriggerEvent;
+    }
+
+    public bool IsTriggerEventSpawn(out Vector3 newCubeSize, out int newShanceDecrease)
+    {
+        bool isTrigger = false;
+        newCubeSize = GetSizeNewCube();
+        newShanceDecrease = _chanceDecrease / _cubeSplitChanceDecrease;
+
+        if (IsTriggerEvent())
+            isTrigger = true;
+
+        return isTrigger;
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void RedefinitionShanceDerease(int chanceDecrease)
+    {
+        _chanceDecrease = chanceDecrease;
     }
 }
