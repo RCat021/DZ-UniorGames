@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputRayCaster : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Ray _ray;
     [SerializeField] protected float _maxDistance = 10f;
+
+    private Ray _ray;
+    private KeyCode _raycastKey = KeyCode.Mouse0;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            HandleRayCast();
+        if (Input.GetKeyDown(_raycastKey))
+            HandleRaycast();
     }
 
-    private void HandleRayCast()
+    private void HandleRaycast()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -24,10 +24,25 @@ public class InputRayCaster : MonoBehaviour
         if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
         {
             Transform objectHit = hit.transform;
-            objectHit.TryGetComponent<CubeView>(out CubeView cubeView);
 
-            if (cubeView != null)
-                cubeView.OnButton();
+            if (objectHit.TryGetComponent<CubeView>(out CubeView cubeView))
+                HitCube(cubeView);
         }
+    }
+
+    private void HitCube(CubeView cube)
+    {
+        if (cube.IsTriggerSpawn())
+            SpawnCubes(cube);
+
+        cube.Destroy();
+    }
+
+    private void SpawnCubes(CubeView cube)
+    {
+        Vector3 newSize = cube.GetSizeNewCube();
+        int newShanceDecrease = cube.GetNewChanceDecrease();
+
+        _spawner.CubeSpawn(cube.transform.position,newSize, newShanceDecrease);
     }
 }

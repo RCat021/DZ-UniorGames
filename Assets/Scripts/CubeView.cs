@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 
-[RequireComponent (typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public class CubeView : MonoBehaviour
 {
     [SerializeField] private int _cubeSizeReduction = 2;
@@ -10,9 +9,6 @@ public class CubeView : MonoBehaviour
 
     private int _maxChanceDecrease = 100;
     private int _chanceDecrease;
-
-    public event Action<CubeView> Split;
-    public event Action<CubeView> Destroyed;
 
     private void Awake()
     {
@@ -22,12 +18,6 @@ public class CubeView : MonoBehaviour
     public void RedefineChanceDecrease(int chanceDecrease)
     {
         _chanceDecrease = chanceDecrease;
-    }
-
-    public void OnButton()
-    {
-        IsTriggerEventSpawn();
-        Destroy();
     }
 
     public int GetNewChanceDecrease()
@@ -40,29 +30,19 @@ public class CubeView : MonoBehaviour
         return transform.localScale / _cubeSizeReduction;
     }
 
-    private bool IsTriggerEvent()
-    {
-        int percent = UnityEngine.Random.Range(0, _maxChanceDecrease + 1);
-
-        return _chanceDecrease >= percent;
-    }
-
-    private bool IsTriggerEventSpawn()
+    public bool IsTriggerSpawn()
     {
         bool isTrigger = false;
+        int percent = Random.Range(0, _maxChanceDecrease + 1);
 
-        if (IsTriggerEvent())
-        {
-            Split?.Invoke(this);
+        if (_chanceDecrease >= percent)
             isTrigger = true;
-        }
 
         return isTrigger;
     }
 
-    private void Destroy()
+    public void Destroy()
     {
-        Destroyed?.Invoke(this);
         Destroy(gameObject);
     }
 }
