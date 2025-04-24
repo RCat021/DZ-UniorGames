@@ -185,17 +185,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131697042}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &152103816 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
-  m_PrefabInstance: {fileID: 1748177286}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8039de1d3784fa4eb551c2b1715ac17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &483699874
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a0ced8ca72bb744937c52a2bf730bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialCube: {fileID: 152103816}
   _prefabCube: {fileID: 3849327835477119755, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
   _exploader: {fileID: 963194231}
   _minSpawnCube: 2
@@ -757,6 +745,14 @@ PrefabInstance:
     - target: {fileID: 150701002795425923, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768696069769275466, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+      propertyPath: _minExplosionForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768696069769275466, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
+      propertyPath: _minExplosionRadius
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1915145486243268296, guid: 0c112448ecb56e141a6a0aa640116fb0, type: 3}
       propertyPath: m_Name

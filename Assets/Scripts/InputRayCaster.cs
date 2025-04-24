@@ -34,7 +34,9 @@ public class InputRayCaster : MonoBehaviour
     {
         if (cube.IsTriggerSpawn())
             SpawnCubes(cube);
-
+        else
+            SpawnCubeExplosion(cube.transform.position, cube.GetCubeBlastInfo());
+       
         cube.Destroy();
     }
 
@@ -43,6 +45,11 @@ public class InputRayCaster : MonoBehaviour
         Vector3 newSize = cube.GetSizeNewCube();
         int newShanceDecrease = cube.GetNewChanceDecrease();
 
-        _spawner.CubeSpawn(cube.transform.position,newSize, newShanceDecrease);
+        _spawner.SpawnCube(cube.transform.position,newSize, newShanceDecrease, cube.GetCubeBlastInfo());
+    }
+
+    private void SpawnCubeExplosion(Vector3 position, CubeBlastInfo cubeBlastInfo)
+    {
+        _spawner.SpawnExploadCube(position, cubeBlastInfo);
     }
 }

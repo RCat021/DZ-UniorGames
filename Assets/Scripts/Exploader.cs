@@ -9,4 +9,9 @@ public class Exploader : MonoBehaviour
     {
         rigidbody.AddExplosionForce(_force, rigidbody.transform.position, _radius);
     }
+
+    public void Expload(Rigidbody rigidbody, Vector3 position, float force,  float radius)
+    {
+        rigidbody.AddExplosionForce(force, position, radius);
+    }
 }

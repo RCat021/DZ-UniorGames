@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C87FAAA2-CAAE-47DA-3377-042F8ACA2475}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -62,6 +63,7 @@
     <Compile Include="Assets\Scripts\InputRayCaster.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\CubeView.cs" />
+    <Compile Include="Assets\Scripts\CubeBlastInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
